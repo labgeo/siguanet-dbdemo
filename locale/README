@@ -7,15 +7,15 @@ How to implement message localization using gettext:
          |_ LC_MESSAGES
 
 1) Create POT file (not for translators)
-pygettext -d siguanet-dbsetup -o locale/siguanet-dbsetup.pot *.py
+pygettext -d siguanet-dbdemo -o locale/siguanet-dbdemo.pot *.py
 
 2) Create PO translation (e.g. Spanish language) file from POT file
-msginit -i locale/siguanet-dbsetup.pot -o locale/es/es.po --locale es_ES.UTF-8
+msginit -i locale/siguanet-dbdemo.pot -o locale/es/es.po --locale es_ES.UTF-8
 
 or merge previous PO translation file with new messages in updated POT file
-msgmerge -U locale/es/es.po locale/siguanet-dbsetup.pot
+msgmerge -U locale/es/es.po locale/siguanet-dbdemo.pot
 
 3) Create binary resource for message translation (e.g. Spanish language) from PO file
-msgfmt -o locale/es/LC_MESSAGES/siguanet-dbsetup.mo locale/es/es.po
+msgfmt -o locale/es/LC_MESSAGES/siguanet-dbdemo.mo locale/es/es.po
 
 

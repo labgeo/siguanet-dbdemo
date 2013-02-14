@@ -9,6 +9,9 @@ from mako.template import Template
 
 EXEC_DIR = os.path.dirname(__file__)
 DEFAULT_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "siguanet-dbdemo.sql")
+INSERT_ORG_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo-organization.sql")
+INSERT_GEOM_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo-geometry.sql")
+INSERT_STAFF_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo-staff.sql")
 
 #i18n
 LOCALE_DIR = os.path.join(EXEC_DIR, "locale")
@@ -17,10 +20,6 @@ translation = gettext.translation("siguanet-dbdemo", localedir=LOCALE_DIR,
 _ = translation.gettext
 
 #l10n
-#srid_help = _("Spatial reference system EPSG identifier")
-#aboveground_help = _("Max. number of aboveground floors")
-#underground_help = _("Max. number of underground floors")
-output_help = _("Output SQL script file name")
 server_help = _("PostgreSQL server address")
 database_help = _("PostgreSQL database name (PostGIS 2.0 extension required)")
 port_help = _("PostgreSQL server port")
@@ -101,11 +100,6 @@ def main():
     py3k = sys.version_info >= (3, 0)
 
     parser = ArgumentParser()
-#    parser.add_argument("srid", type=int, help=srid_help)
-#    parser.add_argument("aboveground", type=int, help=aboveground_help)
-#    parser.add_argument("underground", type=int, help=underground_help)
-    parser.add_argument("-o", "--output", default=DEFAULT_SQLSCRIPT_PATH,
-                        help=output_help)
     parser.add_argument("-s", "--server", help=server_help)
     parser.add_argument("-d", "--database", help=database_help)
     parser.add_argument("-p", "--port", type=int, help=port_help)
@@ -119,14 +113,13 @@ def main():
     sql_template = Template(filename="siguanet-dbdemo.mako")
     sql_source = sql_template.render_unicode(referencia_espacial=25830,
                                              plantas=floors)
-    with open(args.output, 'w') as out_sqlscript:
+    with open(DEFAULT_SQLSCRIPT_PATH, 'w') as out_sqlscript:
         if py3k:
             out_sqlscript.write(sql_source)
         else:
             out_sqlscript.write(sql_source.encode("utf8"))
 
-    sqlscript = os.path.abspath(args.output)
-    print((sqlscript_created.format(sqlscript)))
+    print((sqlscript_created.format(DEFAULT_SQLSCRIPT_PATH)))
 
     if args.database:
         try:
@@ -141,10 +134,10 @@ def main():
                 isver = geos.IsPostGIS2()[0]
                 if isver:
                     sql = SQLScriptFile(cn)
-                    sql.Execute(sqlscript)
-                    sql.Execute("demo_organization.sql")
-                    sql.Execute("demo_geometry.sql")
-                    sql.Execute("demo_staff.sql")
+                    sql.Execute(DEFAULT_SQLSCRIPT_PATH)
+                    sql.Execute(INSERT_ORG_SQLSCRIPT_PATH)
+                    sql.Execute(INSERT_GEOM_SQLSCRIPT_PATH)
+                    sql.Execute(INSERT_STAFF_SQLSCRIPT_PATH)
                     cn.commit()
                 else:
                     print((postgis2_required.format(args.database)))
