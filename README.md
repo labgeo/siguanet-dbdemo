@@ -29,7 +29,7 @@ It makes use of some libraries which may or may not be present in your distribut
 The `siguanet-dbdemo` command requires the user to provide connection parameters to a PostgreSQL database.
 In its simplest form, you can invoke the command like this:
 
-`siguanet-dbsetup.py -d yourdbname -u yourusername`
+`siguanet-dbdemo.py -d yourdbname -u yourusername`
 
 Once you provide your PostgreSQL account password, this will create all SIGUANET objects on `yourdatabase` at your `localhost`.
 The database will be subsequently populated with departments, employees and room geometries using `srid=25830`.
