@@ -9,9 +9,9 @@ from mako.template import Template
 
 EXEC_DIR = os.path.dirname(__file__)
 DEFAULT_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "siguanet-dbdemo.sql")
-INSERT_ORG_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo-organization.sql")
-INSERT_GEOM_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo-geometry.sql")
-INSERT_STAFF_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo-staff.sql")
+INSERT_ORG_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo_organization.sql")
+INSERT_GEOM_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo_geometry.sql")
+INSERT_STAFF_SQLSCRIPT_PATH = os.path.join(EXEC_DIR, "demo_staff.sql")
 
 #i18n
 LOCALE_DIR = os.path.join(EXEC_DIR, "locale")
