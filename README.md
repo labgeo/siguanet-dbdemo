@@ -29,9 +29,13 @@ It makes use of some libraries which may or may not be present in your distribut
 ## How does it work?
 The *siguanet-dbdemo* command requires the user to provide connection parameters to a PostgreSQL database.
 In its simplest form, you can invoke the command like this:  
-`siguanet-dbdemo.py -d yourdbname -u yourusername`  
+```shell
+$ siguanet-dbdemo.py -d yourdbname -u yourusername
+```  
   
 Once you provide your PostgreSQL account password, this will create all [SIGUANET](https://github.com/labgeo/siguanet-dbsetup) objects on the database named `yourdbname` at your `localhost`.  
 The database will be subsequently populated with departments, employees and room geometries using `srid=25830`.  
 For information on all options execute:  
-`siguanet-dbdemo.py -h`
+```shell
+siguanet-dbdemo.py -h
+```
