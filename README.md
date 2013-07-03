@@ -37,5 +37,5 @@ Once you provide your PostgreSQL account password, this will create all [SIGUANE
 The database will be subsequently populated with departments, employees and room geometries using `srid=25830`.  
 For information on all options execute:  
 ```shell
-siguanet-dbdemo.py -h
+$ siguanet-dbdemo.py -h
 ```
